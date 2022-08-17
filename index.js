@@ -8,7 +8,10 @@ const setAlarm = document.getElementById("setAlarm");
 const zone = document.getElementById("zone");
 const alarmContainer = document.getElementsByClassName("container");
 let alarmList = [];
-const audio = new Audio("./assets/alarm.wav");
+const audio = new Audio(
+  "https://freesound.org/data/previews/316/316847_4939433-lq.mp3"
+);
+audio.loop = true;
 // creating functions
 // display current time to users
 function displayTime() {
@@ -31,9 +34,9 @@ function displayTime() {
 displayTime();
 // setting up an alarm
 function createAlarm() {
-  const hrs = hours.value;
-  const min = minutes.value;
-  const sec = seconds.value;
+  let hrs = hours.value;
+  let min = minutes.value;
+  let sec = seconds.value;
   const zoneTime = zone.value;
   if (parseInt(hrs) > 24 || parseInt(min) > 59 || parseInt(sec) > 59) {
     alert(
@@ -52,6 +55,21 @@ function createAlarm() {
   if (parseInt(hrs) == 0) {
     alert("please Enter the valid time");
     return;
+  }
+  if (parseInt(hrs) < 10) {
+    hrs = "0" + parseInt(hrs);
+  } else {
+    hrs = "" + parseInt(hrs);
+  }
+  if (parseInt(min) < 10) {
+    min = "0" + parseInt(min);
+  } else {
+    min = "" + parseInt(min);
+  }
+  if (parseInt(sec) < 10) {
+    sec = "0" + parseInt(sec);
+  } else {
+    sec = "" + parseInt(sec);
   }
   const time = `${hrs}:${min}:${sec} ${zoneTime}`;
   alarmList.push({
