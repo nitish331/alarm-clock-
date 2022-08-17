@@ -12,15 +12,18 @@ const audio = new Audio(
   "https://freesound.org/data/previews/316/316847_4939433-lq.mp3"
 );
 audio.loop = true;
+audio.load();
 // creating functions
 // display current time to users
 function displayTime() {
-  const now = new Date().toLocaleTimeString([], {
-    hour: "2-digit",
-    minute: "2-digit",
-    second: "2-digit",
-    hour12: true,
-  });
+  const now = new Date()
+    .toLocaleTimeString([], {
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit",
+      hour12: true,
+    })
+    .toLowerCase();
   time[0].innerText = now;
   for (let alarm of alarmList) {
     if (now == alarm.time) {
